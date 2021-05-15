@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-type Props = {
+export type Props = {
   task: {
     id: string;
     title: string;
