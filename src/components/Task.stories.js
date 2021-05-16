@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import Task from "./Task";
 
 export default {
@@ -8,14 +8,13 @@ export default {
 
 const Template = (args) => <Task {...args} />;
 
-// 関数のコピーを作成
+// Template.bind({}) = 関数のコピーを作成
 const Default = Template.bind({});
 Default.args = {
   task: {
     id: "1",
     title: "Test Task",
     state: "TASK_INBOX",
-    updateAt: new Date(2021, 0, 1, 9, 0),
   },
 };
 

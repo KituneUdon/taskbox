@@ -10,14 +10,14 @@ type TaskType = {
   state: string;
 };
 
-export type Props = {
+export type PureTaskListProps = {
   loading: boolean;
   tasks: TaskType[];
   onPinTask: (id: string) => void;
   onArchiveTask: (id: string) => void;
 };
 
-const PureTaskList: FC<Props> = ({
+const PureTaskList: FC<PureTaskListProps> = ({
   loading = false,
   tasks,
   onPinTask,
@@ -80,13 +80,16 @@ const PureTaskList: FC<Props> = ({
 
 export { PureTaskList };
 export default connect(
-  (tasks: TaskType[]) => ({
+  ({ tasks, onArchiveTask, onPinTask, loading }: PureTaskListProps) => ({
     tasks: tasks.filter(
       (t) => t.state === "TASK_INBOX" || t.state === "TASK_PINNED"
     ),
+    onArchiveTask,
+    onPinTask,
+    loading,
   }),
   (dispatch) => ({
     onArchiveTask: (id: string) => dispatch(archiveTask(id)),
     onPinTask: (id: string) => dispatch(pinTask(id)),
   })
-);
+)(PureTaskList);
