@@ -33,6 +33,7 @@ const Task: FC<Props> = ({
           value={title}
           readOnly={true}
           placeholder="Input title"
+          style={{ background: "red" }}
         />
       </div>
 
